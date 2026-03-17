@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Miguel Flores Chuye — Data Analyst & IT Specialist</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
 <style>
 :root{--bg:#050709;--surface:#0d1017;--surface2:#141820;--accent:#00e5ff;--accent2:#8b5cf6;--accent3:#00ffa3;--text:#e2e8f0;--text-muted:#64748b;--border:rgba(255,255,255,0.06);--glow-cyan:0 0 60px rgba(0,229,255,0.2);--glow-purple:0 0 60px rgba(139,92,246,0.2);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -406,7 +410,7 @@ footer p{font-size:.78rem;color:var(--text-muted);}
 
 <section id="certificaciones" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
   <div class="container">
-    <div class="section-header reveal"><div class="section-tag">Formación</div><h2 class="section-title">Certificaciones &<br><span class="grad">Educación</span></h2></div>
+    <div class="section-header reveal"><div class="section-tag">Formación</div><h2 class="section-title">Certi.. &<br><span class="grad">Educación</span></h2></div>
     <div class="certs-grid">
       <div class="cert-card reveal"><div class="cert-logo">G</div><div class="cert-issuer">Google / Coursera</div><div class="cert-name">Foundations: Data, Data, Everywhere</div><div class="cert-meta">Diciembre 2025 · Google Career Certificates</div></div>
       <div class="cert-card reveal"><div class="cert-logo">MS</div><div class="cert-issuer">Microsoft Partner Network</div><div class="cert-name">Microsoft SQL Server — Básico e Intermedio</div><div class="cert-meta">Diciembre 2024 · Datux Perú E.I.R.L. · 30 horas · Nota: 19/20</div></div>
@@ -440,7 +444,8 @@ footer p{font-size:.78rem;color:var(--text-muted);}
         <h2 class="contact-title">¿Tienes un<br>proyecto<br>en mente?</h2>
         <p class="contact-sub">Estoy abierto a oportunidades presenciales, híbridas o remotas. Si buscas un analista de datos que genere resultados medibles, hablemos.</p>
         <div class="contact-items">
-          <a href="tel:+51924996961" class="contact-item"><div class="ci-icon">📱</div><span class="ci-text">+51 924 996 961</span></a>
+          <a href="tel:+51924996961" class="contact-item"><div class="ci-icon">📞</div><span class="ci-text">+51 924 996 961</span></a>
+          <a href="https://wa.me/51924996961" target="_blank" class="contact-item"><div class="ci-icon">💬</div><span class="ci-text">WhatsApp</span></a>
           <a href="mailto:floreschuyem@gmail.com" class="contact-item"><div class="ci-icon">✉️</div><span class="ci-text">floreschuyem@gmail.com</span></a>
           <a href="https://www.linkedin.com/in/miguel-alexander-flores-chuye-69753836b/" target="_blank" class="contact-item"><div class="ci-icon">💼</div><span class="ci-text">LinkedIn · Miguel Flores Chuye</span></a>
           <a href="https://github.com/ALEXCHUYE14" target="_blank" class="contact-item"><div class="ci-icon">🐙</div><span class="ci-text">GitHub · ALEXCHUYE14</span></a>
@@ -457,19 +462,19 @@ footer p{font-size:.78rem;color:var(--text-muted);}
       </div>
       <div class="form-card reveal-r">
         <div class="form-row">
-          <div class="form-group"><label>Nombre</label><input type="text" placeholder="Juan García"></div>
-          <div class="form-group"><label>Correo</label><input type="email" placeholder="juan@empresa.com"></div>
+          <div class="form-group"><label>Nombre</label><input type="text" id="contactName" placeholder="Juan García"></div>
+          <div class="form-group"><label>Correo</label><input type="email" id="contactEmail" placeholder="juan@empresa.com"></div>
         </div>
-        <div class="form-group"><label>Asunto</label><input type="text" placeholder="Oportunidad laboral / Proyecto"></div>
-        <div class="form-group"><label>Mensaje</label><textarea placeholder="Cuéntame sobre tu proyecto o la posición disponible..."></textarea></div>
-        <button class="btn-submit" id="submitBtn" onclick="handleSubmit(this)">Enviar mensaje →</button>
+        <div class="form-group"><label>Asunto</label><input type="text" id="contactSubject" placeholder="Oportunidad laboral / Proyecto"></div>
+        <div class="form-group"><label>Mensaje</label><textarea id="contactMessage" placeholder="Cuéntame sobre tu proyecto o la posición disponible..."></textarea></div>
+        <button class="btn-submit" id="submitBtn" onclick="sendToWhatsApp()">Enviar mensaje →</button>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>© 2025 Miguel Alexander Flores Chuye · Catacaos, Piura, Perú</p>
+  <p>© 2026 Miguel Alexander Flores Chuye · Catacaos, Piura, Perú</p>
   <div class="footer-links">
     <a href="https://github.com/ALEXCHUYE14" target="_blank">GitHub</a>
     <a href="https://www.linkedin.com/in/miguel-alexander-flores-chuye-69753836b/" target="_blank">LinkedIn</a>
@@ -498,6 +503,26 @@ function animParticles(){ctx.clearRect(0,0,W,H);particles.forEach(p=>{p.update()
 animParticles();
 
 const cursorEl=document.getElementById('cursor'),ringEl=document.getElementById('cursorRing');
+
+// WhatsApp form submission
+function sendToWhatsApp() {
+  const name = document.getElementById('contactName').value.trim();
+  const email = document.getElementById('contactEmail').value.trim();
+  const subject = document.getElementById('contactSubject').value.trim();
+  const message = document.getElementById('contactMessage').value.trim();
+  
+  if (!name || !message) {
+    alert('Por favor completa tu nombre y mensaje.');
+    return;
+  }
+  
+  const phoneNumber = '51924996961';
+  const whatsappMessage = `*Nuevo mensaje desde tu portafolio:*%0A%0A*Nombre:* ${encodeURIComponent(name)}%0A*Correo:* ${encodeURIComponent(email)}%0A*Asunto:* ${encodeURIComponent(subject)}%0A%0A*Mensaje:*%0A${encodeURIComponent(message)}`;
+  
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+  
+  window.open(whatsappUrl, '_blank');
+}
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursorEl.style.left=mx-5+'px';cursorEl.style.top=my-5+'px';});
 function animCursor(){rx+=(mx-rx-18)*.12;ry+=(my-ry-18)*.12;ringEl.style.left=rx+'px';ringEl.style.top=ry+'px';requestAnimationFrame(animCursor);}
